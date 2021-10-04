@@ -55,6 +55,7 @@ setup(
         "networkx",
         "pandas",
         "qwikidata",
+        "ipdb"
     ],
     extras_require={
         "dev": [
