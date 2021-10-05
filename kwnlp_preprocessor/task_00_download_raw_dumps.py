@@ -3,7 +3,14 @@
 import logging
 from typing import List
 
-from kwnlp_preprocessor import argconfig
+from kwnlp_preprocessor.argconfig import (
+    DEFAULT_KWNLP_DATA_PATH,
+    DEFAULT_KWNLP_WIKI_MIRROR_URL,
+    DEFAULT_KWNLP_WIKI,
+    DEFAULT_KWNLP_DOWNLOAD_JOBS,
+    get_argparser,
+    list_from_comma_delimited_string,
+)
 from kwnlp_dump_downloader.downloader import download_jobs
 
 
@@ -13,10 +20,10 @@ logger = logging.getLogger(__name__)
 def main(
     wp_yyyymmdd: str,
     wd_yyyymmdd: str,
-    data_path: str = argconfig.DEFAULT_KWNLP_DATA_PATH,
-    mirror_url: str = argconfig.DEFAULT_KWNLP_WIKI_MIRROR_URL,
-    wiki: str = argconfig.DEFAULT_KWNLP_WIKI,
-    jobs_to_download: List[str] = argconfig.DEFAULT_KWNLP_DOWNLOAD_JOBS.split(","),
+    data_path: str = DEFAULT_KWNLP_DATA_PATH,
+    mirror_url: str = DEFAULT_KWNLP_WIKI_MIRROR_URL,
+    wiki: str = DEFAULT_KWNLP_WIKI,
+    jobs_to_download: List[str] = DEFAULT_KWNLP_DOWNLOAD_JOBS.split(","),
 ) -> None:
 
     download_jobs(
@@ -41,12 +48,12 @@ if __name__ == "__main__":
         "jobs",
         "loglevel",
     ]
-    parser = argconfig.get_argparser(description, arg_names)
+    parser = get_argparser(description, arg_names)
 
     args = parser.parse_args()
     logging.basicConfig(level=args.loglevel)
     logger.info(f"args={args}")
-    jobs_to_download = argconfig.list_from_comma_delimited_string(args.jobs)
+    jobs_to_download = list_from_comma_delimited_string(args.jobs)
     logger.info(f"jobs_to_download={jobs_to_download}")
 
     main(
