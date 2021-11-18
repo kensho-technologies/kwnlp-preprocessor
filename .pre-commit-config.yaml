@@ -1,5 +1,10 @@
 repos:
 
+-   repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        name: isort (python)
 
 -   repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v1.5.4
