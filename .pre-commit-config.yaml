@@ -54,7 +54,7 @@ repos:
         exclude: "setup.py"
         types: [python]
         # -e enables more verbose explainations of errors
-        args: ["-e", "--convention=numpy", "--add-ignore", "D100,D101,D102,D103,D104,D105,D106,D107"]
+        args: ["-e", "--convention=google", "--add-ignore", "D100,D101,D102,D103,D104,D105,D106,D107"]
 
 
 -   repo: https://github.com/humitos/mirrors-autoflake

@@ -40,12 +40,12 @@ def are_dir_trees_equal(output: str, truth: str) -> bool:
     The output will have extra files because there is intermediate data we dont
     care about comparing. The intermediate data are implementation details.
 
-    @param output: Outputs from processing
-    @param truth: Ground truth outputs
+    Args:
+        output: Outputs from processing
+        truth: Ground truth outputs
 
-    @return: True if the directory trees are the same and
-        there were no errors while accessing the directories or files,
-        False otherwise.
+    Returns:
+        bool: True if the directory trees are the same and there were no errors while accessing the directories or files, False otherwise.
     """
     dirs_cmp = filecmp.dircmp(output, truth)
     # If the truth data has files the output doesnt, we fail
