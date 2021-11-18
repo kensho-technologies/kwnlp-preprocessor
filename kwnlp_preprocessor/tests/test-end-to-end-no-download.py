@@ -36,7 +36,8 @@ def are_dir_trees_equal(output: str, truth: str) -> bool:
     """Compare two directories recursively.
 
     Files in each directory are assumed to be equal if their names and contents are equal.
-    This is modified from https://stackoverflow.com/a/6681395, it only cares that all the files in the truth are in the output, but not the other way around.
+    This is modified from https://stackoverflow.com/a/6681395, it only cares that all the
+    files in the truth are in the output, but not the other way around.
     The output will have extra files because there is intermediate data we dont
     care about comparing. The intermediate data are implementation details.
 
@@ -45,7 +46,9 @@ def are_dir_trees_equal(output: str, truth: str) -> bool:
         truth: Ground truth outputs
 
     Returns:
-        bool: True if the directory trees are the same and there were no errors while accessing the directories or files, False otherwise.
+        bool: True if the directory trees are the same and there were no errors
+              while accessing the directories or files;
+              False otherwise.
     """
     dirs_cmp = filecmp.dircmp(output, truth)
     # If the truth data has files the output doesnt, we fail
