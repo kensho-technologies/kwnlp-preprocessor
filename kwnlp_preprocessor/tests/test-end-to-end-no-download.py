@@ -1,30 +1,33 @@
 # Copyright 2021-present Kensho Technologies, LLC.
-import os.path
 import filecmp
 import logging
-
-from kwnlp_preprocessor import argconfig
-from kwnlp_preprocessor import task_03p1_create_kwnlp_pagecounts
-from kwnlp_preprocessor import task_03p2_convert_sql_to_csv
-from kwnlp_preprocessor import task_06p1_create_kwnlp_page_props
-from kwnlp_preprocessor import task_06p2_create_kwnlp_redirect_it2
-from kwnlp_preprocessor import task_09p1_create_kwnlp_ultimate_redirect
-from kwnlp_preprocessor import task_12p1_create_kwnlp_title_mapper
-from kwnlp_preprocessor import task_15p1_split_and_compress_wikidata
-from kwnlp_preprocessor import task_18p1_filter_wikidata_dump
-from kwnlp_preprocessor import task_21p1_gather_wikidata_chunks
-from kwnlp_preprocessor import task_24p1_create_kwnlp_article_pre
-from kwnlp_preprocessor import task_27p1_parse_wikitext
-from kwnlp_preprocessor import task_30p1_post_process_link_chunks
-from kwnlp_preprocessor import task_33p1_collect_post_processed_link_data
-from kwnlp_preprocessor import task_36p1_collect_template_data
-from kwnlp_preprocessor import task_36p2_collect_length_data
-from kwnlp_preprocessor import task_39p1_create_kwnlp_article
-from kwnlp_preprocessor import task_42p1_collect_section_names
-import unittest
+import os
+import os.path
 import shutil
 from tempfile import TemporaryDirectory
-import os
+import unittest
+
+from kwnlp_preprocessor import (
+    argconfig,
+    task_03p1_create_kwnlp_pagecounts,
+    task_03p2_convert_sql_to_csv,
+    task_06p1_create_kwnlp_page_props,
+    task_06p2_create_kwnlp_redirect_it2,
+    task_09p1_create_kwnlp_ultimate_redirect,
+    task_12p1_create_kwnlp_title_mapper,
+    task_15p1_split_and_compress_wikidata,
+    task_18p1_filter_wikidata_dump,
+    task_21p1_gather_wikidata_chunks,
+    task_24p1_create_kwnlp_article_pre,
+    task_27p1_parse_wikitext,
+    task_30p1_post_process_link_chunks,
+    task_33p1_collect_post_processed_link_data,
+    task_36p1_collect_template_data,
+    task_36p2_collect_length_data,
+    task_39p1_create_kwnlp_article,
+    task_42p1_collect_section_names,
+)
+
 
 logger = logging.getLogger(__name__)
 
