@@ -1,0 +1,4 @@
+property_id,en_label,en_description
+463,member of,"organization, club or musical group to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a position such as a member of parliament (use P39 for that)."
+279,subclass of,next higher class or type; all instances of these items are instances of those items; this item is a class (subset) of that item. Not to be confused with P31 (instance of)
+31,instance of,that class of which this subject is a particular example and member
