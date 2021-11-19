@@ -1,5 +1,11 @@
 repos:
 
+-   repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        name: isort (python)
+        args: ["--indent='    '", "--multi-line=3", "--force-grid-wrap=0", "--force-sort-within-sections"]
 
 -   repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v1.5.4
@@ -48,7 +54,7 @@ repos:
         exclude: "setup.py"
         types: [python]
         # -e enables more verbose explainations of errors
-        args: ["-e", "--convention=numpy", "--add-ignore", "D100,D101,D102,D103,D104,D105,D106,D107"]
+        args: ["-e", "--convention=google", "--add-ignore", "D100,D101,D102,D103,D104,D105,D106,D107"]
 
 
 -   repo: https://github.com/humitos/mirrors-autoflake

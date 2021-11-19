@@ -1,0 +1,47 @@
+property_id,en_alias
+463,membership
+463,band member of
+463,be member of
+463,member of musical group
+463,in musical group
+279,rdfs:subClassOf
+279,hyponym of
+279,has superclass
+279,is also a
+279,subtype of
+279,is a subtype of
+279,subcategory of
+279,is a category of
+279,is thereby also a
+279,is necessarily also a
+279,whose instances are among
+279,whose instances ⊆ those of
+279,⊆
+279,⊂
+279,is a type of
+279,is a class of
+279,subset of
+279,type of
+279,form of
+279,sc
+31,is a
+31,is an
+31,has class
+31,has type
+31,is a particular
+31,is a specific
+31,is an individual
+31,is a unique
+31,is an example of
+31,member of
+31,unique individual of
+31,distinct member of
+31,unitary element of class
+31,distinct element of
+31,distinct individual member of
+31,rdf:type
+31,type
+31,main type
+31,is a(n)
+31,type of
+31,is a type of
