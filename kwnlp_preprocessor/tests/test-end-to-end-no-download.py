@@ -49,8 +49,6 @@ def are_dir_trees_equal(output: str, truth: str) -> bool:
               False otherwise.
     """
     dirs_cmp = filecmp.dircmp(output, truth)
-    for f in dirs_cmp.left_only:
-        print(f)
     # If the truth data has files the output doesnt, we fail
     # funny_files: Files which are in both a and b, but could not be compared.
     if len(dirs_cmp.right_only) > 0 or len(dirs_cmp.funny_files) > 0:
