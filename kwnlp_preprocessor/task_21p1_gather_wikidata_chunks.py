@@ -20,6 +20,7 @@ def main(wd_yyyymmdd: str, data_path: str = argconfig.DEFAULT_KWNLP_DATA_PATH) -
         "qpq-claim",
         "item",
         "item-alias",
+        "item-statements",
         "property",
         "property-alias",
         "skipped-entity",
