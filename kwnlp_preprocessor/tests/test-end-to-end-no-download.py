@@ -27,7 +27,6 @@ from kwnlp_preprocessor import (
     task_42p1_collect_section_names,
 )
 
-
 logger = logging.getLogger(__name__)
 
 
