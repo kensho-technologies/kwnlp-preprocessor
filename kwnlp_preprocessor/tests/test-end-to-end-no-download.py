@@ -2,7 +2,6 @@
 import filecmp
 import logging
 import os
-import os.path
 import shutil
 from tempfile import TemporaryDirectory
 import unittest
@@ -28,7 +27,6 @@ from kwnlp_preprocessor import (
     task_42p1_collect_section_names,
 )
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -51,6 +49,8 @@ def are_dir_trees_equal(output: str, truth: str) -> bool:
               False otherwise.
     """
     dirs_cmp = filecmp.dircmp(output, truth)
+    for f in dirs_cmp.left_only:
+        print(f)
     # If the truth data has files the output doesnt, we fail
     # funny_files: Files which are in both a and b, but could not be compared.
     if len(dirs_cmp.right_only) > 0 or len(dirs_cmp.funny_files) > 0:
@@ -117,5 +117,7 @@ class TestEachStep(unittest.TestCase):
         task_42p1_collect_section_names.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
 
         self.assertTrue(
-            are_dir_trees_equal(self.data_path, "kwnlp_preprocessor/tests/data/outputs")
+            are_dir_trees_equal(
+                self.data_path, os.path.join(os.path.dirname(__file__), "data/outputs")
+            )
         )
