@@ -5,7 +5,12 @@ kwnlp_preprocessor is a Python package to help you convert raw Wikimedia data to
 # Quick Install (Requires Python >= 3.6)
 
 ```bash
-pip install kwnlp-preprocessor
+# Install the pre-commit setup (linters in our case)
+pip install pre-commit
+pre-commit install
+
+pip install . # This package is not on pypi yet
+# or "pip install -e ." to install in editable mode
 ```
 
 # Status
