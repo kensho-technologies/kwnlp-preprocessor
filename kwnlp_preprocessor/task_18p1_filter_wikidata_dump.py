@@ -105,6 +105,25 @@ def parse_file(args: Dict) -> None:
         item_alias_writer = csv.DictWriter(item_alias_fp, fieldnames=fieldnames)
         item_alias_writer.writeheader()
 
+        item_statements_file_path = os.path.join(
+            args["data_path"],
+            "wikidata-derived-{}".format(args["wd_yyyymmdd"]),
+            "item-statements-chunks",
+            "kwnlp-{}-item-statements.csv".format(args["out_file_base"]),
+        )
+        os.makedirs(os.path.dirname(item_statements_file_path), exist_ok=True)
+        item_statements_fp = exit_stack.enter_context(open(item_statements_file_path, "w"))
+        fieldnames = [
+            "statement_id",
+            "mainsnak_datatype",
+            "datavalue_datatype",
+            "source_item_id",
+            "edge_property_id",
+            "target_datavalue",
+        ]
+        item_statements_writer = csv.DictWriter(item_statements_fp, fieldnames=fieldnames)
+        item_statements_writer.writeheader()
+
         property_file_path = os.path.join(
             args["data_path"],
             "wikidata-derived-{}".format(args["wd_yyyymmdd"]),
@@ -267,6 +286,28 @@ def parse_file(args: Dict) -> None:
                         for alias in wd_entity.get_aliases(lang="en")
                     ]
                 )
+
+                # write statements
+                # ---------------------------------------------------------
+                for (
+                    claim_id_str,
+                    claim_group,
+                ) in wd_entity.get_truthy_claim_groups().items():
+                    statement_rows = [
+                        {
+                            "statement_id": f"{wd_entity.entity_id}-{claim_id_str}-{i}",
+                            "mainsnak_datatype": claim.mainsnak.snak_datatype,
+                            "datavalue_datatype": claim.mainsnak.value_datatype,
+                            "source_item_id": wd_entity.entity_id[1:],
+                            "edge_property_id": claim_id_str[1:],
+                            # we must access private variable to faithfully replicate this field
+                            "target_datavalue": claim.mainsnak.datavalue._datavalue_dict,
+                        }
+                        for i, claim in enumerate(claim_group)
+                        if (claim.mainsnak.snaktype == "value" and claim.rank != "deprecated")
+                    ]
+                    for row in statement_rows:
+                        item_statements_writer.writerow(row)
 
                 # filter articles from chosen wiki
                 # ---------------------------------------------------------

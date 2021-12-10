@@ -2,7 +2,6 @@
 import filecmp
 import logging
 import os
-import os.path
 import shutil
 from tempfile import TemporaryDirectory
 import unittest
@@ -117,5 +116,7 @@ class TestEachStep(unittest.TestCase):
         task_42p1_collect_section_names.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
 
         self.assertTrue(
-            are_dir_trees_equal(self.data_path, "kwnlp_preprocessor/tests/data/outputs")
+            are_dir_trees_equal(
+                self.data_path, os.path.join(os.path.dirname(__file__), "data/outputs")
+            )
         )
