@@ -9,11 +9,9 @@ import os
 import re
 from typing import Dict
 
-from qwikidata.entity import WikidataItem
-from qwikidata.entity import WikidataProperty
-from kwnlp_preprocessor import argconfig
-from kwnlp_preprocessor import utils
+from qwikidata.entity import WikidataItem, WikidataProperty
 
+from kwnlp_preprocessor import argconfig, utils
 
 logger = logging.getLogger(__name__)
 
@@ -301,7 +299,9 @@ def parse_file(args: Dict) -> None:
                             "source_item_id": wd_entity.entity_id[1:],
                             "edge_property_id": claim_id_str[1:],
                             # we must access private variable to faithfully replicate this field
-                            "target_datavalue": claim.mainsnak.datavalue._datavalue_dict,
+                            "target_datavalue": json.dumps(
+                                claim.mainsnak.datavalue._datavalue_dict
+                            ),
                         }
                         for i, claim in enumerate(claim_group)
                         if (claim.mainsnak.snaktype == "value" and claim.rank != "deprecated")

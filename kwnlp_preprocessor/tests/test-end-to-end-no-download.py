@@ -27,7 +27,6 @@ from kwnlp_preprocessor import (
     task_42p1_collect_section_names,
 )
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -77,43 +76,46 @@ class TestEachStep(unittest.TestCase):
         wd_yyyymmdd = "20210705"
         wiki = argconfig.DEFAULT_KWNLP_WIKI
         max_entities = argconfig.DEFAULT_KWNLP_MAX_ENTITIES
-        data_path = self.data_path
         workers = 1
-        task_03p1_create_kwnlp_pagecounts.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
-        task_03p2_convert_sql_to_csv.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
-        task_06p1_create_kwnlp_page_props.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
-        task_06p2_create_kwnlp_redirect_it2.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
-        task_09p1_create_kwnlp_ultimate_redirect.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
-        task_12p1_create_kwnlp_title_mapper.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
+        task_03p1_create_kwnlp_pagecounts.main(wp_yyyymmdd, data_path=self.data_path, wiki=wiki)
+        task_03p2_convert_sql_to_csv.main(wp_yyyymmdd, data_path=self.data_path, wiki=wiki)
+        task_06p1_create_kwnlp_page_props.main(wp_yyyymmdd, data_path=self.data_path, wiki=wiki)
+        task_06p2_create_kwnlp_redirect_it2.main(wp_yyyymmdd, data_path=self.data_path, wiki=wiki)
+        task_09p1_create_kwnlp_ultimate_redirect.main(
+            wp_yyyymmdd, data_path=self.data_path, wiki=wiki
+        )
+        task_12p1_create_kwnlp_title_mapper.main(wp_yyyymmdd, data_path=self.data_path, wiki=wiki)
         task_15p1_split_and_compress_wikidata.main(
-            wd_yyyymmdd, data_path=data_path, max_entities=max_entities
+            wd_yyyymmdd, data_path=self.data_path, max_entities=max_entities
         )
         task_18p1_filter_wikidata_dump.main(
             wd_yyyymmdd,
-            data_path=data_path,
+            data_path=self.data_path,
             wiki=wiki,
             workers=workers,
             max_entities=max_entities,
         )
-        task_21p1_gather_wikidata_chunks.main(wd_yyyymmdd, data_path=data_path)
+        task_21p1_gather_wikidata_chunks.main(wd_yyyymmdd, data_path=self.data_path)
         task_24p1_create_kwnlp_article_pre.main(
-            wp_yyyymmdd, wd_yyyymmdd, data_path=data_path, wiki=wiki
+            wp_yyyymmdd, wd_yyyymmdd, data_path=self.data_path, wiki=wiki
         )
         task_27p1_parse_wikitext.main(
             wp_yyyymmdd,
-            data_path=data_path,
+            data_path=self.data_path,
             wiki=wiki,
             workers=workers,
             max_entities=max_entities,
         )
         task_30p1_post_process_link_chunks.main(
-            wp_yyyymmdd, data_path=data_path, wiki=wiki, workers=workers
+            wp_yyyymmdd, data_path=self.data_path, wiki=wiki, workers=workers
         )
-        task_33p1_collect_post_processed_link_data.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
-        task_36p1_collect_template_data.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
-        task_36p2_collect_length_data.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
-        task_39p1_create_kwnlp_article.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
-        task_42p1_collect_section_names.main(wp_yyyymmdd, data_path=data_path, wiki=wiki)
+        task_33p1_collect_post_processed_link_data.main(
+            wp_yyyymmdd, data_path=self.data_path, wiki=wiki
+        )
+        task_36p1_collect_template_data.main(wp_yyyymmdd, data_path=self.data_path, wiki=wiki)
+        task_36p2_collect_length_data.main(wp_yyyymmdd, data_path=self.data_path, wiki=wiki)
+        task_39p1_create_kwnlp_article.main(wp_yyyymmdd, data_path=self.data_path, wiki=wiki)
+        task_42p1_collect_section_names.main(wp_yyyymmdd, data_path=self.data_path, wiki=wiki)
 
         self.assertTrue(
             are_dir_trees_equal(
