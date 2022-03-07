@@ -18,9 +18,9 @@ logger = logging.getLogger(__name__)
 
 SKIP_INSTANCES_OF_NQID = frozenset(
     [
-        13442814,
+        13442814,  # scholarly article
     ]
-)  # scholarly article
+)
 
 RANK_TO_INT = {"deprecated": 2, "normal": 1, "preferred": 0}
 
