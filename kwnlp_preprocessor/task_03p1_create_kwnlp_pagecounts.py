@@ -13,8 +13,8 @@ import logging
 import os
 import time
 import typing
-from kwnlp_preprocessor import argconfig
 
+from kwnlp_preprocessor import argconfig
 
 logger = logging.getLogger(__name__)
 

@@ -5,7 +5,6 @@ import multiprocessing
 import sys
 from typing import Dict, List
 
-
 DEFAULT_KWNLP_DATA_PATH: str = ""
 DEFAULT_KWNLP_WIKI_MIRROR_URL: str = "https://dumps.wikimedia.org"
 DEFAULT_KWNLP_WIKI: str = "enwiki"
@@ -75,6 +74,14 @@ ap_loglevel.add_argument(
     type=int,
 )
 
+ap_include_item_statements = argparse.ArgumentParser(add_help=False)
+ap_include_item_statements.add_argument(
+    "--include_item_statements",
+    default=False,
+    help="whether to produce the wikidata item statements output",
+    type=bool,
+)
+
 
 ARGS: Dict[str, argparse.ArgumentParser] = {
     "wp_yyyymmdd": ap_wp_yyyymmdd,
@@ -86,6 +93,7 @@ ARGS: Dict[str, argparse.ArgumentParser] = {
     "max_entities": ap_max_entities,
     "workers": ap_workers,
     "loglevel": ap_loglevel,
+    "include_item_statements": ap_include_item_statements,
 }
 
 

@@ -8,9 +8,10 @@ For redirect titles it will map to the ultimate redirect article page id.
 """
 import logging
 import os
-import pandas as pd
-from kwnlp_preprocessor import argconfig
 
+import pandas as pd
+
+from kwnlp_preprocessor import argconfig
 
 logger = logging.getLogger(__name__)
 
