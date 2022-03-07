@@ -2,9 +2,10 @@
 """Update page_props format."""
 import logging
 import os
-import pandas as pd
-from kwnlp_preprocessor import argconfig
 
+import pandas as pd
+
+from kwnlp_preprocessor import argconfig
 
 logger = logging.getLogger(__name__)
 

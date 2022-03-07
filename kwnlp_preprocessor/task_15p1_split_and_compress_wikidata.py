@@ -13,8 +13,8 @@ from typing import Iterable
 
 import funcy
 from qwikidata.json_dump import WikidataJsonDump
-from kwnlp_preprocessor import argconfig
 
+from kwnlp_preprocessor import argconfig
 
 logger = logging.getLogger(__name__)
 

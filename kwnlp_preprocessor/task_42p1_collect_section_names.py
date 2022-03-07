@@ -1,12 +1,11 @@
 # Copyright 2021-present Kensho Technologies, LLC.
 import logging
 import os
-import pandas as pd
 import re
 
-from kwnlp_preprocessor import argconfig
-from kwnlp_preprocessor import utils
+import pandas as pd
 
+from kwnlp_preprocessor import argconfig, utils
 
 logger = logging.getLogger(__name__)
 

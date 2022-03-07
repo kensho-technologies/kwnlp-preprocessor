@@ -10,16 +10,14 @@ import json
 import logging
 from multiprocessing import get_context
 import os
-import pandas as pd
 import re
 from typing import Dict, Pattern
 
 import mwtext
 import mwxml
+import pandas as pd
 
-from kwnlp_preprocessor import argconfig
-from kwnlp_preprocessor import utils
-
+from kwnlp_preprocessor import argconfig, utils
 
 logger = logging.getLogger(__name__)
 

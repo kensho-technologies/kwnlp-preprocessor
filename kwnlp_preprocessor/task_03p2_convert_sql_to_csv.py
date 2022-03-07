@@ -2,9 +2,10 @@
 """Convert raw SQL dumps into CSVs."""
 import logging
 import os
-from kwnlp_sql_parser.wp_sql_dump import WikipediaSqlDump
-from kwnlp_preprocessor import argconfig
 
+from kwnlp_sql_parser.wp_sql_dump import WikipediaSqlDump
+
+from kwnlp_preprocessor import argconfig
 
 logger = logging.getLogger(__name__)
 ARTICLE_NAMESPACE = ("0",)

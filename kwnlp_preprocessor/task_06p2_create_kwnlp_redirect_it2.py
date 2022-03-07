@@ -2,9 +2,10 @@
 """Add source page titles and target page ids to redirect CSV."""
 import logging
 import os
-import pandas as pd
-from kwnlp_preprocessor import argconfig
 
+import pandas as pd
+
+from kwnlp_preprocessor import argconfig
 
 logger = logging.getLogger(__name__)
 

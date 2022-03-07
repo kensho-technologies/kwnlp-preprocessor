@@ -5,26 +5,31 @@ import re
 
 import pandas as pd
 
-from kwnlp_preprocessor import argconfig
-from kwnlp_preprocessor import utils
-
+from kwnlp_preprocessor import argconfig, utils
 
 logger = logging.getLogger(__name__)
 
 
-def main(wd_yyyymmdd: str, data_path: str = argconfig.DEFAULT_KWNLP_DATA_PATH) -> None:
+def main(
+    wd_yyyymmdd: str,
+    data_path: str = argconfig.DEFAULT_KWNLP_DATA_PATH,
+    include_item_statements: bool = False,
+) -> None:
 
-    for sample in [
+    files_to_include = [
         "p31-claim",
         "p279-claim",
         "qpq-claim",
         "item",
         "item-alias",
-        "item-statements",
         "property",
         "property-alias",
         "skipped-entity",
-    ]:
+    ]
+    if include_item_statements:
+        files_to_include.append("item-statements")
+
+    for sample in files_to_include:
 
         in_dump_path = os.path.join(
             data_path,
@@ -61,7 +66,7 @@ def main(wd_yyyymmdd: str, data_path: str = argconfig.DEFAULT_KWNLP_DATA_PATH) -
 if __name__ == "__main__":
 
     description = "gather wikidata chunks"
-    arg_names = ["wd_yyyymmdd", "data_path", "loglevel"]
+    arg_names = ["wd_yyyymmdd", "data_path", "loglevel", "include_item_statements"]
     parser = argconfig.get_argparser(description, arg_names)
 
     args = parser.parse_args()
