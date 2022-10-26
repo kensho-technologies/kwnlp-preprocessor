@@ -48,13 +48,13 @@ setup(
     package_data={"": []},
     install_requires=[
         "funcy",
-        "kwnlp_dump_downloader",
-        "kwnlp_sql_parser",
+        "kwnlp_dump_downloader>=0.1.0,<0.2",
+        "kwnlp_sql_parser>=0.0.2,<0.1",
         "mwtext",
         "mwxml",
         "networkx",
         "pandas",
-        "qwikidata",
+        "qwikidata>=0.4.1,<0.5",
     ],
     extras_require={
         "dev": [
