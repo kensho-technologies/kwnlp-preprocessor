@@ -243,26 +243,30 @@ def parse_file(args: Dict) -> None:
 
                 # qpq operations
                 # ---------------------------------------------------------
-                for (
-                    claim_id_str,
-                    claim_group,
-                ) in wd_entity.get_truthy_claim_groups().items():
-                    qpq_rows = [
-                        {
-                            "source_id": source_id,
-                            "property_id": claim_id_str[1:],
-                            "target_id": claim.mainsnak.datavalue.value["numeric-id"],
-                            "rnk": RANK_TO_INT[claim.rank],
-                        }
-                        for claim in claim_group
-                        if (
-                            claim.mainsnak.snaktype == "value"
-                            and claim.rank != "deprecated"
-                            and claim.mainsnak.snak_datatype == "wikibase-item"
-                        )
-                    ]
-                    for row in qpq_rows:
-                        qpq_writer.writerow(row)
+                try:
+                    for (
+                        claim_id_str,
+                        claim_group,
+                    ) in wd_entity.get_truthy_claim_groups().items():
+                        qpq_rows = [
+                            {
+                                "source_id": source_id,
+                                "property_id": claim_id_str[1:],
+                                "target_id": claim.mainsnak.datavalue.value["numeric-id"],
+                                "rnk": RANK_TO_INT[claim.rank],
+                            }
+                            for claim in claim_group
+                            if (
+                                    claim.mainsnak.snaktype == "value"
+                                    and claim.rank != "deprecated"
+                                    and claim.mainsnak.snak_datatype == "wikibase-item"
+                            )
+                        ]
+                        for row in qpq_rows:
+                            qpq_writer.writerow(row)
+                except ValueError as e:
+                    logger.info("ValueError for entity %s", wd_entity)
+                    logger.exception(e)
 
                 # write label and description
                 # ---------------------------------------------------------
